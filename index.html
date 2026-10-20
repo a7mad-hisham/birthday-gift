@@ -994,7 +994,7 @@ function projectorOn(){               // short projector "warm-up" flicker when 
 /* ---------------- The runaway bear ---------------- */
 const pet = $('#pet'), petHop = $('#petHop'), petBubble = $('#petBubble');
 const PET_W = 62, PET_H = 70;
-const PET_LINES = ['مش تعرفي تمسكيني', 'مقولت مش تعرفي ي آيوش' 'بتبصي عليا ليه؟ شوفي الهدية!', 'مش قولت شوفي الهدية!'];
+const PET_LINES = ['مش تعرفي تمسكيني', 'مقولت مش تعرفي ي آيوش', 'بتبصي عليا ليه؟ شوفي الهدية!', 'مش قولت شوفي الهدية!'];
 let touchCounter = 0, petX = 0, petY = 0, petBusy = false, petLine = 0, bubbleTimer = null, lastPtr = { x:-999, y:-999 };
 function petBounds(){ return { x0:8, x1:Math.max(8, innerWidth - PET_W - 8), y0:96, y1:Math.max(96, innerHeight - PET_H - 100) }; }
 function pickSpot(){
