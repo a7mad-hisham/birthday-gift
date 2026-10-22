@@ -962,7 +962,7 @@ $('#timeline').innerHTML = CONFIG.timeline.map((t,i) =>
 })();
 
 $('#swWrap').innerHTML = CONFIG.photos.map((p,i) => i === CONFIG.photos.length - 1 ?
-  `<div class="swiper-slide"><div class="pol-rot"><div class="sc-card"><div class="sc-view"><img src="${esc(p.src)}" alt="" draggable="false"><div class="sc-msg"><p>${esc(p.backText)}</p></div><canvas class="sc-canvas swiper-no-swiping no-swipe" aria-label="امسحي لاكتشاف المفاجأة"></canvas></div><div class="pol-cap">${esc(p.caption)}</div></div></div></div>` :
+  `<div class="swiper-slide"><div class="pol-rot"><div class="sc-card"><div class="sc-view"><img src="${esc(p.src)}" alt="" draggable="false"><div class="sc-msg"><p>${esc(p.backText)}</p></div><canvas class="sc-canvas swiper-no-swiping no-swipe" aria-label="  "></canvas></div><div class="pol-cap">${esc(p.caption)}</div></div></div></div>` :
   `<div class="swiper-slide"><div class="pol-rot"><div class="pol" tabindex="0" role="button" aria-label="اقلبي الصورة">
      <div class="pol-face pol-front"><div class="pol-img"><div class="pol-ph">&#10084;</div><img src="${esc(p.src)}" alt="" draggable="false"></div><div class="pol-cap">${esc(p.caption)}</div></div>
      <div class="pol-face pol-back"><p>${esc(p.backText)}</p><span class="pol-heart">&#10084;</span></div>
