@@ -6,17 +6,17 @@
 <meta name="theme-color" content="#0f0205">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>♥️</title>
- 
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
- 
+
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
- 
+
 <style>
 :root{
   --wine-1:#0f0205; --wine-2:#2b0510; --wine-3:#4a091b;
@@ -37,9 +37,9 @@ body{
 }
 .font-en{font-family:'Playfair Display',serif}
 .is-hidden{display:none!important}
- 
+
 #fx{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
- 
+
 /* ---- Full moon (behind the screens, above the star canvas) ---- */
 .moon{position:fixed;z-index:0;pointer-events:none;
   top:calc(max(14px,env(safe-area-inset-top)) + 10px);right:clamp(14px,6vw,56px);
@@ -58,7 +58,7 @@ body{
   background:radial-gradient(circle,rgba(255,244,205,.14) 0%,rgba(243,229,171,.06) 35%,transparent 62%)}
 @keyframes moonGlow{from{box-shadow:inset -9px -7px 18px rgba(130,108,60,.38),inset 4px 3px 10px rgba(255,255,255,.55),0 0 22px 4px rgba(255,244,205,.38),0 0 70px 20px rgba(243,229,171,.18),0 0 170px 60px rgba(212,175,55,.08)}
   to{box-shadow:inset -9px -7px 18px rgba(130,108,60,.38),inset 4px 3px 10px rgba(255,255,255,.55),0 0 32px 8px rgba(255,244,205,.55),0 0 92px 32px rgba(243,229,171,.28),0 0 210px 80px rgba(212,175,55,.13)}}
- 
+
 .glass{
   background:rgba(245,235,230,.09);
   backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);
@@ -71,7 +71,7 @@ body{
   animation:shine 6s linear infinite;
 }
 @keyframes shine{to{background-position:200% center}}
- 
+
 /* =================== GATE =================== */
 .gate{position:fixed;inset:0;z-index:130;overflow:hidden auto;display:flex;align-items:center;justify-content:center;
   background:radial-gradient(90% 70% at 50% 40%,rgba(74,9,27,.55),rgba(15,2,5,.8) 75%)}
@@ -92,19 +92,28 @@ body{
   background:linear-gradient(170deg,#FFFAF6,#F1E0D5);
   border:1px solid rgba(212,175,55,.75);
   box-shadow:0 10px 30px rgba(0,0,0,.35),inset 0 0 0 4px rgba(212,175,55,.12);
-  display:flex;flex-direction:column;justify-content:center;gap:10px;transition:box-shadow .25s,border-color .25s;
+  display:flex;flex-direction:column;justify-content:center;gap:8px;transition:box-shadow .25s,border-color .25s;
   -webkit-user-select:text;user-select:text}
 .env-card.active{pointer-events:auto}
 .env-card.wrong{border-color:#ff5a5a!important;box-shadow:0 0 0 2px rgba(255,80,80,.85),0 0 45px rgba(255,60,60,.65)!important}
-.env-card .hint{font-weight:700;font-size:1.02rem;line-height:1.7}
-.env-card .sub{font-size:.76rem;opacity:.7}
-.pass-row{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(74,14,23,.2);border-radius:999px;padding:4px}
-.pass-row input{flex:1;min-width:0;border:0;outline:0;background:transparent;text-align:center;letter-spacing:.35em;font-size:1.05rem;color:var(--wine-2);padding:8px 6px;font-family:'Cairo',sans-serif}
-.pass-row input::placeholder{letter-spacing:.1em;color:rgba(74,14,23,.35);font-size:.85rem}
-.pass-go{flex:none;width:40px;height:40px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;
-  background:linear-gradient(135deg,#F3E5AB,#D4AF37);color:var(--wine-2);font-size:1.2rem;font-weight:800;box-shadow:0 4px 12px rgba(212,175,55,.5);transition:transform .2s}
-.pass-go:hover{transform:scale(1.08)}
-.pass-err{min-height:1.1em;font-size:.76rem;color:#c0182b;font-weight:600}
+.env-card .sub{font-size:.86rem;font-weight:600;line-height:1.7;opacity:.85}
+.fp{position:relative;align-self:center;flex:none;width:80px;height:80px;margin:2px 0;border:0;padding:0;border-radius:50%;cursor:pointer;display:grid;place-items:center;color:var(--gold-2);
+  background:radial-gradient(circle at 35% 30%,#8a1f36,#4a091b 62%,#2b0510);box-shadow:0 6px 16px rgba(0,0,0,.45),0 0 16px rgba(212,175,55,.45);
+  touch-action:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;outline:none;
+  animation:fpIdle 2.4s ease-in-out infinite}
+@keyframes fpIdle{0%,100%{box-shadow:0 6px 16px rgba(0,0,0,.45),0 0 12px rgba(212,175,55,.35)}50%{box-shadow:0 6px 16px rgba(0,0,0,.45),0 0 26px 4px rgba(243,229,171,.6)}}
+.fp-ic{width:42px;height:42px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px rgba(243,229,171,.9));pointer-events:none}
+.fp-ring{position:absolute;left:-7px;top:-7px;width:94px;height:94px;transform:rotate(-90deg);pointer-events:none;overflow:visible}
+.fp-track{fill:none;stroke:rgba(74,9,27,.16);stroke-width:4}
+.fp-prog{fill:none;stroke:#D4AF37;stroke-width:4.5;stroke-linecap:round;filter:drop-shadow(0 0 4px rgba(212,175,55,.9))}
+.fp.holding{animation:heartbeat .86s ease-in-out infinite}
+@keyframes heartbeat{
+  0%,100%{transform:scale(1);box-shadow:0 6px 16px rgba(0,0,0,.45),0 0 14px rgba(212,175,55,.5)}
+  14%{transform:scale(1.14);box-shadow:0 6px 16px rgba(0,0,0,.45),0 0 38px 8px rgba(243,229,171,.85)}
+  28%{transform:scale(1)}
+  42%{transform:scale(1.09);box-shadow:0 6px 16px rgba(0,0,0,.45),0 0 28px 5px rgba(243,229,171,.7)}
+  70%{transform:scale(1)}}
+.fp.ok{animation:none;transform:scale(1.08);box-shadow:0 0 44px 12px rgba(243,229,171,.9)}
 .env-pocket{position:absolute;inset:0;z-index:4;pointer-events:none;filter:drop-shadow(0 -2px 3px rgba(0,0,0,.18))}
 .env-pocket div{position:absolute;inset:0;border-radius:8px}
 .env-pocket .pl{background:linear-gradient(90deg,#4a0a1e,#5f1228);clip-path:polygon(0 0,50% 50%,0 100%)}
@@ -136,7 +145,7 @@ body{
 .gate-hint{margin-top:34px;font-size:.9rem;color:var(--gold-2);opacity:.85;text-align:center;animation:pulseText 2.4s ease-in-out infinite}
 @keyframes pulseText{0%,100%{opacity:.5}50%{opacity:1}}
 @media (max-width:360px){.env-scene{transform:scale(.9)}}
- 
+
 /* =================== APP SHELL =================== */
 #app{position:fixed;inset:0;z-index:10;visibility:hidden}
 #app.live{visibility:visible}
@@ -150,28 +159,29 @@ body{
 .s-icon svg{width:28px;height:28px;filter:drop-shadow(0 0 6px rgba(243,229,171,.95))}
 @keyframes iconGlow{from{box-shadow:0 0 14px rgba(212,175,55,.3),inset 0 0 14px rgba(212,175,55,.12)}to{box-shadow:0 0 32px rgba(243,229,171,.6),inset 0 0 22px rgba(212,175,55,.25)}}
 .s-title{font-family:'Amiri',serif;font-weight:700;font-size:clamp(1.5rem,5.5vw,2.1rem);color:var(--gold-2);text-shadow:0 0 22px rgba(212,175,55,.5);margin:0;line-height:1.3}
-.s-body{flex:1;min-height:0;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;padding:10px 18px 118px;
+.s-body{flex:1;min-height:0;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;padding:10px 18px 92px;
   scrollbar-width:none;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y;
-  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 14px,#000 calc(100% - 104px),transparent calc(100% - 72px));
-          mask-image:linear-gradient(180deg,transparent 0,#000 14px,#000 calc(100% - 104px),transparent calc(100% - 72px))}
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 14px,#000 calc(100% - 80px),transparent calc(100% - 52px));
+          mask-image:linear-gradient(180deg,transparent 0,#000 14px,#000 calc(100% - 80px),transparent calc(100% - 52px))}
 .s-body::-webkit-scrollbar{display:none}
 .s-body>.fit{margin:auto;width:100%}
- 
-/* ---- Dock ---- */
-.dock{position:fixed;left:0;right:0;margin:0 auto;bottom:max(14px,env(safe-area-inset-bottom));width:min(94vw,480px);height:68px;z-index:120;
-  display:flex;align-items:stretch;padding:6px;border-radius:28px;visibility:hidden;opacity:0;
-  background:rgba(15,2,5,.58);border:1px solid rgba(243,229,171,.32);
-  backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%);
-  box-shadow:0 0 24px rgba(212,175,55,.35),0 18px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.12)}
-.dock-dot{position:absolute;top:-1px;left:0;width:26px;height:3px;border-radius:3px;background:linear-gradient(90deg,transparent,#F3E5AB,transparent);box-shadow:0 0 14px 2px rgba(243,229,171,.9)}
-.dock-btn{position:relative;flex:1;border:0;background:transparent;color:rgba(245,235,230,.55);cursor:pointer;border-radius:22px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-family:'Cairo',sans-serif;transition:color .35s,background .35s}
-.dock-btn .ic{width:24px;height:24px;display:block;transition:transform .35s,filter .35s}
-.dock-btn .ic svg{width:100%;height:100%}
-.dock-btn em{font-style:normal;font-size:.6rem;font-weight:600;letter-spacing:.02em;white-space:nowrap}
-.dock-btn.active{color:var(--gold-2);background:radial-gradient(circle at 50% 30%,rgba(243,229,171,.2),rgba(212,175,55,.05) 75%)}
-.dock-btn.active .ic{transform:translateY(-1px) scale(1.12);filter:drop-shadow(0 0 7px rgba(243,229,171,.95))}
- 
+
+/* ---- Swipe navigation (arrows + dots) ---- */
+.nav{position:fixed;left:0;right:0;margin:0 auto;bottom:max(14px,env(safe-area-inset-bottom));width:max-content;max-width:94vw;z-index:120;
+  display:flex;align-items:center;gap:12px;padding:7px 9px;border-radius:999px;direction:ltr;visibility:hidden;opacity:0;
+  background:rgba(15,2,5,.5);border:1px solid rgba(243,229,171,.3);
+  backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);
+  box-shadow:0 0 22px rgba(212,175,55,.3),0 12px 30px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.1)}
+.nav-arrow{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid rgba(243,229,171,.45);cursor:pointer;display:grid;place-items:center;color:var(--gold-2);
+  background:radial-gradient(circle at 35% 30%,rgba(243,229,171,.22),rgba(212,175,55,.05) 75%);transition:transform .25s,opacity .3s,box-shadow .3s;-webkit-tap-highlight-color:transparent}
+.nav-arrow svg{width:18px;height:18px;filter:drop-shadow(0 0 5px rgba(243,229,171,.9))}
+.nav-arrow:hover:not(:disabled){transform:scale(1.1);box-shadow:0 0 16px rgba(243,229,171,.6)}
+.nav-arrow:disabled{opacity:.25;cursor:default}
+.nav-dots{display:flex;gap:8px;align-items:center}
+.nav-dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;cursor:pointer;background:rgba(245,235,230,.28);transition:all .4s}
+.nav-dot.on{width:22px;border-radius:6px;background:var(--gold-2);box-shadow:0 0 10px rgba(243,229,171,.9)}
+#blackout{position:fixed;inset:0;z-index:400;background:#000;opacity:0;visibility:hidden;pointer-events:none}
+
 /* ---- Floating vinyl ---- */
 .music{position:fixed;top:max(12px,env(safe-area-inset-top));left:12px;z-index:140;visibility:hidden;opacity:0;display:flex;align-items:center}
 .vinyl{position:relative;width:48px;height:48px;border-radius:50%;border:0;padding:0;cursor:pointer;
@@ -194,7 +204,7 @@ body{
 .mq-half{display:flex;flex-shrink:0}
 .mq-half span{direction:rtl;white-space:nowrap;padding:0 24px;font-size:.78rem;color:var(--cream-1)}
 @keyframes mq{from{transform:translateX(-50%)}to{transform:translateX(0)}}
- 
+
 /* ---- Screen 1 ---- */
 .hero{text-align:center;padding-top:6px}
 .hero-pre{font-size:.92rem;letter-spacing:.06em;color:var(--gold-2);opacity:.85;margin-bottom:6px}
@@ -212,7 +222,7 @@ body{
 @media(min-width:768px){.counter{grid-template-columns:repeat(6,1fr);max-width:820px}}
 .tl-head{text-align:center;margin:34px 0 22px;font-family:'Amiri',serif;font-size:1.5rem;color:var(--gold-2);text-shadow:0 0 18px rgba(212,175,55,.45)}
 .tl-head::before,.tl-head::after{content:"✦";color:var(--gold-1);font-size:.8rem;margin:0 12px;vertical-align:middle}
- 
+
 .timeline{position:relative;width:100%;max-width:880px;margin:0 auto;padding:4px 0 10px}
 .timeline::before{content:"";position:absolute;top:0;bottom:0;right:13px;width:2px;
   background:linear-gradient(180deg,transparent,var(--gold-1) 8%,var(--gold-2) 50%,var(--gold-1) 92%,transparent);box-shadow:0 0 14px rgba(212,175,55,.75)}
@@ -242,12 +252,26 @@ body{
   .tl-item:nth-child(even) .tl-dot{right:-10px}
   .tl-item.in{transform:none!important}
 }
- 
+
 /* ---- Screen 2 : Swiper ---- */
 .gal-wrap{width:100%;max-width:760px;margin:auto}
-#swiper{width:100%;padding:22px 0 40px;overflow:hidden;--swiper-pagination-color:#D4AF37;--swiper-pagination-bullet-inactive-color:#F5EBE6;--swiper-pagination-bullet-inactive-opacity:.35;--swiper-pagination-bottom:6px}
-#swiper .swiper-slide{width:max(150px,min(66vw,270px,calc((100dvh - 350px)*.8)));height:auto;display:block}
+#swiper{width:100%;height:min(calc(100dvh - 230px),600px);min-height:300px;padding:0;overflow:hidden;--swiper-pagination-color:#D4AF37;--swiper-pagination-bullet-inactive-color:#F5EBE6;--swiper-pagination-bullet-inactive-opacity:.35;--swiper-pagination-bottom:6px}
+#swiper .swiper-slide{width:max(150px,min(66vw,270px,calc((100dvh - 350px)*.8)));height:auto;display:block;margin-inline:auto}
 .pol-rot{perspective:1200px}
+/* 5th slide: gold scratch card */
+.sc-card{position:relative;width:100%;aspect-ratio:4/5;border-radius:8px;padding:11px;display:flex;flex-direction:column;
+  background:linear-gradient(180deg,#FFFAF6,var(--cream-1));box-shadow:0 20px 44px rgba(0,0,0,.55)}
+.sc-view{position:relative;flex:1;min-height:0;overflow:hidden;border-radius:2px;background:linear-gradient(135deg,#4a091b,#0f0205)}
+.sc-view img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
+.sc-msg{position:absolute;left:0;right:0;bottom:0;max-height:70%;overflow:hidden;padding:30px 12px 12px;text-align:center;font-family:'Amiri',serif;font-size:1.02rem;line-height:1.75;color:var(--cream-1);
+  background:linear-gradient(180deg,transparent,rgba(15,2,5,.88) 45%);text-shadow:0 1px 6px rgba(0,0,0,.7)}
+.sc-msg p{margin:0}
+.sc-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:3;touch-action:none;cursor:grab;-webkit-user-select:none;user-select:none}
+.tl-eyes .tl-card{position:relative;color:var(--cream-1);background:#2b0510 center/cover no-repeat;border:1px solid rgba(243,229,171,.75);
+  box-shadow:0 14px 34px rgba(0,0,0,.5),0 0 26px rgba(212,175,55,.5),inset 0 0 0 3px rgba(243,229,171,.1);text-shadow:0 1px 8px rgba(0,0,0,.75)}
+.tl-eyes .tl-date{color:var(--gold-2)}
+.tl-eyes .tl-card h3{color:var(--gold-2)}
+.tl-eyes .tl-card p{color:var(--cream-1)}
 .pol{position:relative;width:100%;aspect-ratio:4/5;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.4,.1,.2,1);cursor:pointer;outline:none}
 .pol.flipped{transform:rotateY(180deg)}
 .pol-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:8px;
@@ -270,7 +294,7 @@ body{
 .pol-back p{margin:0;font-family:'Amiri',serif;font-size:1.08rem;line-height:1.9;max-height:100%;overflow:auto;scrollbar-width:none}
 .pol-back p::-webkit-scrollbar{display:none}
 .pol-heart{color:#a8283d;margin-top:8px;font-size:1.05rem}
- 
+
 /* ---- Screen 3 : Poetry ---- */
 #scr2{background-size:cover;background-position:center;background-repeat:no-repeat}
 #scr2::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
@@ -285,7 +309,7 @@ body{
 .caret{display:inline-block;width:2px;height:1.1em;background:var(--gold-2);box-shadow:0 0 10px var(--gold-1);vertical-align:-.15em;margin-right:3px;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
 .poem-author{margin-top:22px;font-family:'Amiri',serif;font-size:1.15rem;color:var(--gold-2);opacity:0}
- 
+
 /* ---- Screen: Messages (the bear & the chest) ---- */
 @keyframes floatY{0%,100%{translate:0 0}50%{translate:0 -9px}}
 .msg-stage{display:flex;flex-direction:column;align-items:center;gap:16px;width:100%}
@@ -300,7 +324,7 @@ body{
 @keyframes twinkleS{0%,100%{opacity:.15;transform:scale(.6)}50%{opacity:1;transform:scale(1.15)}}
 .blink{transform-box:fill-box;transform-origin:center;animation:blinkEye 4.6s infinite}
 @keyframes blinkEye{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
- 
+
 /* envelope that flies out of the chest */
 .fly-letter{position:fixed;left:0;top:0;width:200px;height:134px;z-index:210;pointer-events:none;visibility:hidden;perspective:800px}
 .fly-letter>div{position:absolute}
@@ -312,7 +336,7 @@ body{
 .fl-flap{left:0;top:0;width:100%;height:66%;z-index:4;transform-origin:50% 0;background:linear-gradient(180deg,#EAD3C5,#DCC0B0);clip-path:polygon(0 0,100% 0,50% 100%)}
 .fl-seal{left:50%;top:66%;width:30px;height:30px;margin:-15px 0 0 -15px;z-index:5;border-radius:50%;display:grid;place-items:center;font-size:13px;color:var(--gold-2);
   background:radial-gradient(circle at 35% 30%,#8a1f36,#4a091b 60%,#2b0510);box-shadow:0 3px 8px rgba(0,0,0,.45),inset 0 0 0 2px rgba(212,175,55,.6)}
- 
+
 /* ---- The runaway bear ---- */
 .pet{position:fixed;left:0;top:0;width:62px;height:70px;z-index:130;visibility:hidden;cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}
 .pet-hop,.pet-float{width:100%;height:100%;transform-origin:50% 100%}
@@ -326,7 +350,7 @@ body{
 .pet-bubble.below::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:#FFFAF6}
 .puff{position:fixed;left:0;top:0;width:60px;height:60px;margin:-30px 0 0 -30px;border-radius:50%;pointer-events:none;z-index:129;
   background:radial-gradient(circle,rgba(255,244,205,.9),rgba(243,229,171,.35) 45%,transparent 70%)}
- 
+
 #modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:20px;
   background:rgba(14,2,5,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .modal-card{position:relative;width:100%;max-width:480px;max-height:80dvh;overflow:auto;border-radius:24px;padding:38px 26px 30px;text-align:center;color:var(--wine-2);
@@ -338,7 +362,7 @@ body{
 .modal-card p{font-family:'Amiri',serif;font-size:1.3rem;line-height:2.1;margin:0;white-space:pre-wrap}
 .modal-x{position:absolute;top:12px;left:12px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(74,14,23,.2);cursor:pointer;background:rgba(74,14,23,.06);color:var(--wine-2);font-size:1.1rem}
 .modal-x:hover{background:rgba(74,14,23,.14)}
- 
+
 /* ---- Screen 5 : Cake ---- */
 .cake-stage{display:flex;flex-direction:column;align-items:center;text-align:center;width:100%}
 .wish{font-family:'Amiri',serif;font-weight:700;font-size:clamp(1.25rem,5vw,2rem);line-height:1.8;color:var(--gold-2);text-shadow:0 0 26px rgba(212,175,55,.55);margin:0 0 8px;max-width:620px}
@@ -353,7 +377,7 @@ body{
 @keyframes ring{0%{opacity:.9;transform:scale(.7)}100%{opacity:0;transform:scale(1.7)}}
 #candle{cursor:pointer;outline:none}
 .tap-hint{margin-top:6px;font-size:.86rem;color:var(--gold-2);opacity:.85;animation:pulseText 2s ease-in-out infinite}
- 
+
 .letter-stage{width:100%;max-width:720px;margin:auto}
 .letter{border-radius:26px;padding:38px 24px 32px;text-align:center;color:var(--wine-2);
   background:linear-gradient(160deg,#FFFAF6,var(--cream-2));border:1px solid rgba(212,175,55,.8);
@@ -366,7 +390,7 @@ body{
 .letter .hr{color:var(--gold-1);margin:10px 0 20px;letter-spacing:.6em}
 .letter p.lp{font-family:'Amiri',serif;font-size:clamp(1.2rem,4.3vw,1.5rem);line-height:2.25;margin:0 0 14px;text-align:start}
 .letter .sig{font-family:'Playfair Display',serif;font-style:italic;font-size:1.5rem;color:var(--wine-3);margin-top:20px;direction:ltr}
- 
+
 /* ---- Video room: the vintage cinema ---- */
 .cinema{display:flex;justify-content:center;width:100%}
 .film-frame{display:flex;width:fit-content;max-width:100%;padding:6px;border-radius:22px;overflow:hidden;
@@ -382,7 +406,7 @@ body{
 @keyframes grain{0%{background-position:0 0}20%{background-position:-30px 20px}40%{background-position:25px -35px}60%{background-position:-45px -10px}80%{background-position:15px 40px}100%{background-position:0 0}}
 .custom-video{display:block;width:auto;height:auto;max-width:calc(100vw - 36px - 14px);max-height:calc(100dvh - 300px);
   background:#0f0205;color-scheme:dark;accent-color:#d9c9a3}
- 
+
 /* projector light beam (from the top of the screen down onto the film) */
 .projector-beam{position:absolute;left:0;right:0;margin:0 auto;width:min(96vw,520px);top:calc(max(14px,env(safe-area-inset-top)) + 40px);height:62%;
   z-index:2;pointer-events:none;opacity:.78;mix-blend-mode:screen;
@@ -404,12 +428,12 @@ body{
 #scr5.dim::before{opacity:1}
 </style>
 </head>
- 
+
 <body>
 <canvas id="fx"></canvas>
 <div class="moon" aria-hidden="true"></div>
 <audio id="bgm" loop preload="auto"></audio>
- 
+
 <!-- ================= GATE (ENVELOPE) ================= -->
 <section id="gate" class="gate" aria-label="البوابة">
   <div id="gateInner" class="gate-inner">
@@ -418,13 +442,11 @@ body{
       <div class="env-float" id="envFloat">
         <div class="env-body"></div>
         <div class="env-card" id="envCard">
-          <div class="hint">تلميح: يوم اكتمال القمر 🌕</div>
-          <div class="sub">اكتبي كلمة السر يصغنن </div>
-          <div class="pass-row">
-            <input id="passInput" type="password" inputmode="numeric" autocomplete="off" placeholder="كلمة السر" aria-label="كلمة السر">
-            <button id="passGo" class="pass-go" aria-label="تأكيد">&#8592;</button>
-          </div>
-          <div class="pass-err" id="passErr"></div>
+          <div class="sub">اضغطي ع البصمة يصغنن🤍</div>
+          <button id="fpBtn" class="fp" aria-label="اضغطي ع البصمة يصغنن">
+            <svg class="fp-ring" viewBox="0 0 100 100" aria-hidden="true"><circle class="fp-track" cx="50" cy="50" r="46"/><circle class="fp-prog" id="fpProg" cx="50" cy="50" r="46"/></svg>
+            <svg class="fp-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 11c0 3-.5 5.5-1.5 8"/><path d="M8.5 15.5c.4-1.4.6-2.8.5-4.5a3.2 3.2 0 0 1 6.4 0c0 3.2-.4 6.2-1.6 8.8"/><path d="M5.5 18c.7-2 1-4 1-7a5.5 5.5 0 0 1 11 0c0 1.3 0 2.5-.2 3.6"/><path d="M3.5 12a8.5 8.5 0 0 1 17 0v1"/><path d="M18 18.5c.3-1 .5-2 .6-3"/></svg>
+          </button>
         </div>
         <div class="env-pocket"><div class="pl"></div><div class="pr"></div><div class="pb"></div>
           <svg class="env-lines" viewBox="0 0 300 200" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0L150 100L0 200M300 0L150 100L300 200M0 200L150 100L300 200"/></svg>
@@ -448,13 +470,13 @@ body{
         <button class="env-seal" id="envSeal" aria-label="افتحي الرسالة">&#10084;</button>
       </div>
     </div>
-    <div class="gate-hint" id="gateHint">اضغطي على الختم  ✨</div>
+    <div class="gate-hint" id="gateHint">اضغطي على الختم✨</div>
   </div>
 </section>
- 
+
 <!-- ================= APP : OVERLAPPING SCREENS ================= -->
 <div id="app">
- 
+
   <!-- Screen 1 : Timeline & Counter -->
   <section class="screen" id="scr0">
     <div class="s-head"><div class="s-icon anim" data-ic="clock"></div></div>
@@ -476,7 +498,7 @@ body{
       <div class="timeline" id="timeline"></div>
     </div>
   </section>
- 
+
   <!-- Screen 2 : Gallery -->
   <section class="screen" id="scr1">
     <div class="s-head"><div class="s-icon anim" data-ic="image"></div><h2 class="s-title anim">الصور</h2></div>
@@ -489,20 +511,20 @@ body{
       </div>
     </div>
   </section>
- 
+
   <!-- Screen 3 : Video room (vintage cinema) -->
   <section class="screen" id="scr5">
     <div class="projector-beam" id="beam" aria-hidden="true"><i class="mote"></i><i class="mote"></i><i class="mote"></i><i class="mote"></i><i class="mote"></i><i class="mote"></i><i class="mote"></i></div>
     <div class="s-head"><div class="s-icon anim" data-ic="film"></div><h2 class="s-title anim">فديو </h2></div>
     <div class="s-body">
       <div class="fit cinema" id="cinema">
-        <div class="film-frame anim">
+        <div class="film-frame no-swipe anim">
           <div class="film-screen"><video id="vid" class="custom-video" controls playsinline preload="metadata"></video></div>
         </div>
       </div>
     </div>
   </section>
- 
+
   <!-- Screen 3 : Poetry -->
   <section class="screen dark" id="scr2">
     <div class="s-head"><div class="s-icon anim" data-ic="feather"></div></div>
@@ -517,7 +539,7 @@ body{
       </div>
     </div>
   </section>
- 
+
   <!-- Screen 5 : Messages (the bear & the chest) -->
   <section class="screen" id="scr3">
     <div class="s-head"><div class="s-icon anim" data-ic="mail"></div><h2 class="s-title anim">رسائل من القلب</h2></div>
@@ -535,7 +557,7 @@ body{
               <clipPath id="lidClip"><path d="M70 218V196Q70 160 112 160H188Q230 160 230 196V218Z"/></clipPath>
             </defs>
             <ellipse cx="150" cy="330" rx="118" ry="11" fill="rgba(0,0,0,.4)"/>
- 
+
             <!-- bear: feet + body (behind the chest) -->
             <g id="bearBack">
               <ellipse cx="64" cy="318" rx="30" ry="18" fill="url(#mFur)"/><ellipse cx="236" cy="318" rx="30" ry="18" fill="url(#mFur)"/>
@@ -555,7 +577,7 @@ body{
               <circle cx="128" cy="79.5" r="2" fill="#fff"/><circle cx="176" cy="79.5" r="2" fill="#fff"/>
               <g transform="translate(190 42) rotate(14)"><path d="M0 0L-17 -10V10Z M0 0L17 -10V10Z" fill="#7a1a2b" stroke="#D4AF37" stroke-width="1"/><circle r="4.2" fill="#D4AF37"/></g>
             </g>
- 
+
             <!-- gift chest: base, rays, lid -->
             <g id="chestBase">
               <rect x="74" y="210" width="152" height="104" rx="12" fill="url(#mVel)"/>
@@ -585,7 +607,7 @@ body{
               <path d="M150 162C166 140 188 146 181 162C175 174 157 170 150 162Z" fill="url(#mGold)" stroke="#8f6a14" stroke-width=".8"/>
               <circle cx="150" cy="162" r="6.5" fill="url(#mGold)" stroke="#8f6a14" stroke-width=".8"/>
             </g>
- 
+
             <!-- bear arms hugging the chest -->
             <g id="arms" fill="none" stroke-linecap="round">
               <path d="M96 142C52 170 56 232 112 240" stroke="#CF9863" stroke-width="30"/>
@@ -598,7 +620,7 @@ body{
               <ellipse cx="112" cy="244" rx="7" ry="5.5"/><circle cx="104" cy="234" r="2.8"/><circle cx="112" cy="231" r="2.8"/><circle cx="120" cy="234" r="2.8"/>
               <ellipse cx="188" cy="244" rx="7" ry="5.5"/><circle cx="180" cy="234" r="2.8"/><circle cx="188" cy="231" r="2.8"/><circle cx="196" cy="234" r="2.8"/>
             </g>
- 
+
             <!-- sparkles -->
             <g fill="#fff3c2">
               <path class="spark" style="animation-delay:0s" transform="translate(38 150)" d="M0 -9Q1.6 -1.6 9 0Q1.6 1.6 0 9Q-1.6 1.6 -9 0Q-1.6 -1.6 0 -9Z"/>
@@ -612,7 +634,7 @@ body{
       </div>
     </div>
   </section>
- 
+
   <!-- Screen 5 : Finale -->
   <section class="screen" id="scr4">
     <div class="s-head"><div class="s-icon anim" data-ic="cake"></div></div>
@@ -632,7 +654,7 @@ body{
             <ellipse cx="150" cy="322" rx="132" ry="12" fill="rgba(0,0,0,.35)"/>
             <ellipse cx="150" cy="306" rx="142" ry="16" fill="url(#gd)"/>
             <ellipse cx="150" cy="302" rx="132" ry="12" fill="#F5EBE6" opacity=".92"/>
- 
+
             <rect x="35" y="225" width="230" height="77" rx="14" fill="url(#cr)"/>
             <path d="M35 240 V239 a14 14 0 0 1 14-14 H251 a14 14 0 0 1 14 14 V240 Z" fill="url(#wn)"/>
             <g fill="url(#wn)">
@@ -647,7 +669,7 @@ body{
             <text x="82" y="283" text-anchor="middle" fill="#B8932A" font-size="16">&#9829;</text>
             <text x="150" y="285" text-anchor="middle" fill="#7A1A2B" font-size="20">&#9829;</text>
             <text x="218" y="283" text-anchor="middle" fill="#B8932A" font-size="16">&#9829;</text>
- 
+
             <rect x="65" y="165" width="170" height="62" rx="12" fill="url(#cr2)"/>
             <path d="M65 178 V177 a12 12 0 0 1 12-12 H223 a12 12 0 0 1 12 12 V178 Z" fill="url(#gd)"/>
             <g fill="url(#gd)">
@@ -658,7 +680,7 @@ body{
               <circle cx="82" cy="219" r="3"/><circle cx="104" cy="219" r="3"/><circle cx="126" cy="219" r="3"/><circle cx="148" cy="219" r="3"/>
               <circle cx="170" cy="219" r="3"/><circle cx="192" cy="219" r="3"/><circle cx="214" cy="219" r="3"/>
             </g>
- 
+
             <rect x="95" y="112" width="110" height="55" rx="10" fill="url(#cr)"/>
             <path d="M95 124 V122 a10 10 0 0 1 10-10 H195 a10 10 0 0 1 10 10 V124 Z" fill="url(#wn)"/>
             <g fill="url(#wn)">
@@ -667,7 +689,7 @@ body{
             <g fill="url(#gd)">
               <circle cx="112" cy="159" r="3"/><circle cx="134" cy="159" r="3"/><circle cx="156" cy="159" r="3"/><circle cx="178" cy="159" r="3"/><circle cx="198" cy="159" r="3"/>
             </g>
- 
+
             <g id="candle" role="button" tabindex="0" aria-label="اطفئي الشمعة">
               <rect x="146" y="64" width="8" height="48" rx="2" fill="#F8EEE8"/>
               <rect x="146" y="74" width="8" height="4" fill="#9a2a3d"/><rect x="146" y="86" width="8" height="4" fill="#9a2a3d"/><rect x="146" y="98" width="8" height="4" fill="#9a2a3d"/>
@@ -690,7 +712,7 @@ body{
         </div>
         <div class="tap-hint anim" id="tapHint">&#8593; اضغطي على الشمعة</div>
       </div>
- 
+
       <div class="letter-stage is-hidden" id="letterStage">
         <div class="letter">
           <h2 class="hb gold-text">Happy Birthday, AyuSh</h2>
@@ -702,7 +724,7 @@ body{
     </div>
   </section>
 </div>
- 
+
 <!-- Floating vinyl player (top corner) -->
 <div id="music" class="music">
   <button id="vinylBtn" class="vinyl" aria-label="تشغيل / إيقاف الموسيقى">
@@ -710,10 +732,15 @@ body{
   </button>
   <div id="musicPill" class="music-pill glass"><div class="marquee"><div class="mq-track" id="mqTrack"></div></div></div>
 </div>
- 
-<!-- Bottom navigation dock -->
-<nav id="dock" class="dock" aria-label="التنقل"><span class="dock-dot" id="dockDot"></span></nav>
- 
+
+<!-- Swipe navigation -->
+<div id="nav" class="nav" aria-label="التنقل">
+  <button id="navPrev" class="nav-arrow" aria-label="السابق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <div class="nav-dots" id="navDots"></div>
+  <button id="navNext" class="nav-arrow" aria-label="التالي"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+</div>
+<div id="blackout" aria-hidden="true"></div>
+
 <!-- Runaway bear -->
 <div id="pet" class="pet" aria-hidden="true">
   <div class="pet-bubble" id="petBubble"></div>
@@ -736,12 +763,12 @@ body{
     </svg>
   </div></div>
 </div>
- 
+
 <!-- Envelope that flies out of the chest -->
 <div id="flyLetter" class="fly-letter" aria-hidden="true">
   <div class="fl-back"></div><div class="fl-paper"></div><div class="fl-front"></div><div class="fl-flap"></div><div class="fl-seal">&#10084;</div>
 </div>
- 
+
 <!-- Messages modal -->
 <div id="modal" role="dialog" aria-modal="true">
   <div class="modal-card" id="modalCard">
@@ -751,7 +778,7 @@ body{
     <p id="mBody"></p>
   </div>
 </div>
- 
+
 <script>
 /* =====================================================================
    ⚙️ ملف الإعدادات — عدّل القيم هنا فقط (لا تلمس أي شيء آخر تحت)
@@ -767,16 +794,20 @@ const CONFIG = {
   timeline: [
     { date: "10 / 09 / 2023", title: "أول يوم اتكلمنا فيه", desc: "" }, // المحطة الأولى
     { date: "01 / 09 / 2024", title: "أول يوم اتقابلنا فيه", desc: ""  }, // المحطة الثانية
-    { date: "26 / 10 / 2026", title: "يوم اكتمال القمر", desc: ""  } // المحطة الرابعة
+    { date: "26 / 10 / 2006", title: "يوم اكتمال القمر", desc: ""  } // المحطة الرابعة
   ],
+  eyesBg: "eyes.jpg", // صورة خلفية كارت المحطة الرابعة "يوم اكتمال القمر" (تظهر تحت طبقة داكنة شفافة عشان الكلام يفضل واضح)
 
   // معرض الصور (5 صور) — src اسم ملف الصورة، caption التاريخ تحت الصورة، backText الرسالة وراء الصورة
   photos: [
-    { src: "photo1.jpg", caption: "♥", backText: " ♥ القمر بتاعي يناس" },
-    { src: "photo2.jpg", caption: "♥", backText: "كنت قمر ف اليوم ده" },
-    { src: "photo3.jpg", caption: "♥", backText: "يوم اللي بيتني ف المنتزة" },
-    { src: "photo4.jpg", caption: "♥", backText: "أعتقد ده أكتر يوم بتحبة" },
-    { src: "photo5.jpg", caption: "♥", backText: "يوم اللي كنت بتحتفل ب 3 سنين ♥" }
+    { src: "photo1.jpg", caption: "♥", backText: "اوف ع القمر اللي مصورة" },
+    { src: "photo2.jpg", caption: "♥", backText: "تاخد بوسه هنا" },
+    { src: "photo3.jpg", caption: "♥", backText: " ♥ القمر بتاعي يناس" },
+    { src: "photo4.jpg", caption: "♥", backText: "كنت قمر ف اليوم ده" },
+    { src: "photo5.jpg", caption: "♥", backText: "يوم اللي بيتني ف المنتزة" },
+    { src: "photo6.jpg", caption: "♥", backText: "أعتقد ده أكتر يوم بتحبة" },
+    { src: "photo7.jpg", caption: "♥", backText: "يوم اللي كنت بتحتفل ب 3 سنين ♥" },
+    { src: "photo6.jpg", caption: "♥", backText: "♥" }
   ],
 
   // غرفة الشعر — الأبيات التي تُكتب حرفاً حرفاً (كل عنصر في القائمة = سطر). الصق القصيدة التي تحبها هنا
@@ -787,7 +818,7 @@ const CONFIG = {
     "والعمرُ بكِ يا حبيبتي أحلى."
   ],
   poemAuthor: "", // اسم صاحب القصيدة (اتركه فارغاً إن لم ترد إظهاره، مثال: "— نزار قباني")
-  poemBg: "poem-bg.jpg", // مسار صورة خلفية غرفة الشعر 
+  poemBg: "poem-bg.jpg", // مسار صورة خلفية غرفة الشعر
 
   // كروت المشاعر (5 كروت)
   feelingsCards: [
@@ -802,7 +833,7 @@ const CONFIG = {
   videoSrc: "video.mp4", // مسار ملف الفيديو الذي يظهر في "شريط ذكرياتنا"
 
   // الرسالة الختامية بعد إطفاء الشمعة (اترك سطراً فارغاً بين الفقرات لتقسيمها)
-  finalMessage: "اكتب رسالة عيد الميلاد الطويلة هنا..."
+  finalMessage: "كل سنه وانتي طيبة يروح قلبي، كل سنة وانتي حبيبتي والصغنن بتاعي، بحبك موت وبحبك تبقي مبسوطه، كنت صغنن دلوقت بقيت صغنن 20 سنه، نفسي اجبلك كل حاجه نفسك نفيها وعوزاها واخليكي الدلوعة بتاعتي، بحبك وبحب ابقي معاكي وافصل معاكي، حتي لو مش بنعمل حاجه بس وانت جنبي ببقا مرتاح، بعشق عيونك وحلاوتك وطيبتك وكل حاجه فيكي، ومش احب حد ف الدنيا قدك انتي، بزعلك كتير عارف بس بيبقا حب، ولسه هزعلك كتير تاني، ان شاء الله ي آيوش تبقي سنة سعيده عليكي وكل حاجه وحشه مش تبقي موجوده فيها، انت روحي وقلبي وعقلي وكل حاجه ولو كنت بارد شويه بس انا بعشقك، احلى 20 سنة يصغنن وانت بخير وقمر زي م انت ..."
 };
 /* ===================================================================== */
 
@@ -812,8 +843,8 @@ const $ = s => document.querySelector(s);
 const $$ = s => Array.from(document.querySelectorAll(s));
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const rand = (a,b) => b === undefined ? Math.random()*a : a + Math.random()*(b-a);
- 
-/* ---------------- Icons (shared by dock + screen headers) ---------------- */
+
+/* ---------------- Icons (shared by screen headers) ---------------- */
 const svg = p => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
 const ICONS = {
   clock:   svg('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/><path d="M12 2.5v1.2M21.5 12h-1.2M12 21.5v-1.2M2.5 12h1.2" opacity=".6"/>'),
@@ -832,20 +863,12 @@ const SCREENS = [
   { icon:'cake',    label:'التورتة' }
 ];
 $$('.s-icon').forEach(el => { el.innerHTML = ICONS[el.dataset.ic]; });
-const dock = $('#dock'), dockDot = $('#dockDot');
-SCREENS.forEach((s,i) => {
-  const b = document.createElement('button');
-  b.className = 'dock-btn'; b.dataset.i = i; b.setAttribute('aria-label', s.label);
-  b.innerHTML = `<span class="ic">${ICONS[s.icon]}</span><em>${s.label}</em>`;
-  dock.appendChild(b);
-});
-const dockBtns = $$('.dock-btn');
- 
+
 /* ---------------- Twinkling night sky (white + soft-gold stars) ---------------- */
 (function stars(){
   const cv = $('#fx'), ctx = cv.getContext('2d');
   let W, H, DPR, sky = [], px = 0, py = 0, tx = 0, ty = 0;
- 
+
   function sprite(size, draw){ const c = document.createElement('canvas'); c.width = c.height = size; draw(c.getContext('2d'), size); return c; }
   function glowSprite(rgb){
     return sprite(64, (g,s) => {
@@ -859,7 +882,7 @@ const dockBtns = $$('.dock-btn');
   }
   const WHITE = '255,255,255', GOLD = '255,222,140';
   const glowW = glowSprite(WHITE), glowG = glowSprite(GOLD);
- 
+
   function mk(){
     const r = Math.random(), depth = rand(.2, 1);
     let kind = 'dot', size = rand(.45, 1.25) * (.55 + depth*.6);
@@ -879,7 +902,7 @@ const dockBtns = $$('.dock-btn');
   }
   addEventListener('pointermove', e => { tx = (e.clientX/W - .5)*2; ty = (e.clientY/H - .5)*2; }, { passive:true });
   addEventListener('deviceorientation', e => { if (e.gamma == null) return; tx = Math.max(-1,Math.min(1,e.gamma/30)); ty = Math.max(-1,Math.min(1,(e.beta-45)/30)); }, { passive:true });
- 
+
   function frame(now){
     if (!document.hidden){
       const t = now/1000;
@@ -908,7 +931,7 @@ const dockBtns = $$('.dock-btn');
   }
   addEventListener('resize', resize); resize(); requestAnimationFrame(frame);
 })();
- 
+
 /* ---------------- Audio + floating vinyl ---------------- */
 const audio = $('#bgm'), music = $('#music'), pill = $('#musicPill');
 audio.src = CONFIG.musicSrc; audio.volume = .85;
@@ -927,17 +950,24 @@ $('#vinylBtn').addEventListener('click', () => { if (audio.paused) playAudio(); 
   $('#mqTrack').innerHTML = half + half;
   gsap.set(pill, { autoAlpha:0, x:-12 });
 })();
- 
+
 /* ---------------- Build content from CONFIG ---------------- */
-$('#timeline').innerHTML = CONFIG.timeline.map(t =>
-  `<div class="tl-item"><span class="tl-dot"></span><div class="tl-card"><div class="tl-date">${esc(t.date)}</div><h3>${esc(t.title)}</h3><p>${esc(t.desc)}</p></div></div>`).join('');
- 
-$('#swWrap').innerHTML = CONFIG.photos.map(p =>
+const EYES_I = (k => k >= 0 ? k : 3)(CONFIG.timeline.findIndex(t => String(t.title).includes('اكتمال القمر')));
+$('#timeline').innerHTML = CONFIG.timeline.map((t,i) =>
+  `<div class="tl-item${i === EYES_I ? ' tl-eyes' : ''}"><span class="tl-dot"></span><div class="tl-card"><div class="tl-date">${esc(t.date)}</div><h3>${esc(t.title)}</h3><p>${esc(t.desc)}</p></div></div>`).join('');
+
+(function(){                                   // 4th card: background photo under a dark transparent overlay
+  const c = $('.tl-eyes .tl-card');
+  if (c && CONFIG.eyesBg) c.style.backgroundImage = 'linear-gradient(180deg,rgba(15,2,5,.6),rgba(15,2,5,.85)),url("' + String(CONFIG.eyesBg).replace(/"/g, '%22') + '")';
+})();
+
+$('#swWrap').innerHTML = CONFIG.photos.map((p,i) => i === 4 ?
+  `<div class="swiper-slide"><div class="pol-rot"><div class="sc-card"><div class="sc-view"><img src="${esc(p.src)}" alt="" draggable="false"><div class="sc-msg"><p>${esc(p.backText)}</p></div><canvas class="sc-canvas swiper-no-swiping no-swipe" aria-label="امسحي لاكتشاف المفاجأة"></canvas></div><div class="pol-cap">${esc(p.caption)}</div></div></div></div>` :
   `<div class="swiper-slide"><div class="pol-rot"><div class="pol" tabindex="0" role="button" aria-label="اقلبي الصورة">
      <div class="pol-face pol-front"><div class="pol-img"><div class="pol-ph">&#10084;</div><img src="${esc(p.src)}" alt="" draggable="false"></div><div class="pol-cap">${esc(p.caption)}</div></div>
      <div class="pol-face pol-back"><p>${esc(p.backText)}</p><span class="pol-heart">&#10084;</span></div>
    </div></div></div>`).join('');
-$$('.pol-img img').forEach(img => {
+$$('.pol-img img, .sc-view img').forEach(img => {
   const bad = () => { img.style.display = 'none'; };
   img.addEventListener('error', bad);
   if (img.complete && img.naturalWidth === 0) bad();
@@ -948,6 +978,7 @@ $$('.pol').forEach(p => {
 });
 /* one delegated tap handler: reliable even when the 3D coverflow transforms confuse hit-testing */
 $('#swiper').addEventListener('click', e => {
+  if (e.target.closest && e.target.closest('.sc-card')) return;
   let p = e.target.closest ? e.target.closest('.pol') : null;
   if (!p){
     const inside = el => { const r = el.getBoundingClientRect(); return e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom; };
@@ -956,21 +987,69 @@ $('#swiper').addEventListener('click', e => {
   }
   if (p) p.classList.toggle('flipped');
 });
+/* ---------------- Gold scratch card (5th slide) ---------------- */
+let scInit = false, scDone = false;
+function initScratch(){
+  const cv = $('.sc-canvas'); if (!cv || scInit) return;
+  const w = cv.clientWidth, hgt = cv.clientHeight; if (!w || !hgt) return;
+  scInit = true;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2), ctx = cv.getContext('2d', { willReadFrequently:true });
+  cv.width = Math.round(w*dpr); cv.height = Math.round(hgt*dpr); ctx.setTransform(dpr,0,0,dpr,0,0);
+  const paint = () => {
+    const g = ctx.createLinearGradient(0,0,w,hgt);
+    [[0,'#8f6a14'],[.18,'#f3e5ab'],[.36,'#d4af37'],[.52,'#fff3c2'],[.7,'#b8932a'],[.86,'#e9cf7a'],[1,'#8f6a14']].forEach(s => g.addColorStop(s[0], s[1]));
+    ctx.globalCompositeOperation = 'source-over'; ctx.fillStyle = g; ctx.fillRect(0,0,w,hgt);
+    for (let k = 0; k < 900; k++){ ctx.fillStyle = Math.random() < .5 ? 'rgba(255,255,255,.18)' : 'rgba(90,60,10,.16)'; ctx.fillRect(Math.random()*w, Math.random()*hgt, 1.4, 1.4); }
+    ctx.save(); ctx.rotate(-.5); ctx.fillStyle = 'rgba(255,255,255,.12)';
+    for (let x = -hgt; x < w + hgt; x += 46) ctx.fillRect(x, -hgt, 14, hgt*3);
+    ctx.restore();
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.direction = 'rtl';
+    ctx.font = '700 ' + Math.max(15, Math.min(22, w/12)) + 'px Amiri, Cairo, serif';
+    ctx.fillStyle = 'rgba(255,243,194,.85)'; ctx.fillText('امسحي لاكتشاف المفاجأة ✨', w/2 + 1, hgt/2 + 1, w - 28);
+    ctx.fillStyle = '#4a091b'; ctx.fillText('امسحي لاكتشاف المفاجأة ✨', w/2, hgt/2, w - 28);
+  };
+  paint();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (!scDone && !scDirty) paint(); });
+  let down = false, lx = 0, ly = 0, moves = 0, scDirty = false;
+  const pt = e => ({ x:e.offsetX, y:e.offsetY });
+  const stroke = (x0,y0,x1,y1) => {
+    scDirty = true;
+    ctx.globalCompositeOperation = 'destination-out'; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.lineWidth = 46;
+    ctx.beginPath(); ctx.moveTo(x0,y0); ctx.lineTo(x1,y1); ctx.stroke();
+  };
+  const cleared = () => {
+    const d = ctx.getImageData(0,0,cv.width,cv.height).data, step = 8; let tot = 0, clr = 0;
+    for (let y = 0; y < cv.height; y += step) for (let x = 0; x < cv.width; x += step){ tot++; if (d[(y*cv.width + x)*4 + 3] < 20) clr++; }
+    return clr/tot;
+  };
+  const reveal = () => {
+    if (scDone) return; scDone = true;
+    gsap.to(cv, { opacity:0, duration:.9, ease:'power2.out', onComplete:() => { cv.style.display = 'none'; } });
+    if (typeof confetti === 'function') confetti({ particleCount:70, spread:80, origin:{ x:.5, y:.55 }, colors:['#F3E5AB','#D4AF37','#FFF3C2','#7a1a2b'], zIndex:320 });
+  };
+  cv.addEventListener('pointerdown', e => { if (scDone) return; down = true; try{ cv.setPointerCapture(e.pointerId); }catch(_){} const p = pt(e); lx = p.x; ly = p.y; stroke(lx,ly,lx+.1,ly+.1); e.preventDefault(); });
+  cv.addEventListener('pointermove', e => {
+    if (!down || scDone) return; const p = pt(e); stroke(lx,ly,p.x,p.y); lx = p.x; ly = p.y;
+    if (++moves % 8 === 0 && cleared() > .5) reveal();
+  });
+  const up = () => { if (!down) return; down = false; if (!scDone && cleared() > .5) reveal(); };
+  cv.addEventListener('pointerup', up); cv.addEventListener('pointercancel', up);
+}
 let sw = null;
 if (typeof Swiper === 'function'){
   sw = new Swiper('#swiper', {
-    effect:'coverflow', grabCursor:true, centeredSlides:true, slidesPerView:'auto', speed:650,
+    direction:'vertical', effect:'coverflow', grabCursor:true, centeredSlides:true, slidesPerView:'auto', speed:650,
     coverflowEffect:{ rotate:38, stretch:-8, depth:180, modifier:1, slideShadows:false },
     pagination:{ el:'#swiper .swiper-pagination', clickable:true },
     keyboard:{ enabled:true }
   });
   sw.on('slideChange', () => $$('.pol.flipped').forEach(p => p.classList.remove('flipped')));
 }
- 
+
 const poemText = (Array.isArray(CONFIG.poem) ? CONFIG.poem.join('\n') : String(CONFIG.poem));
 $('#poemGhost').textContent = poemText;
 $('#poemAuthor').textContent = CONFIG.poemAuthor || '';
- 
+
 /* ---------------- Video room: vintage cinema ---------------- */
 const vid = $('#vid'), cinema = $('#cinema'), scr5 = $('#scr5'), beam = $('#beam');
 if (CONFIG.videoSrc) vid.src = CONFIG.videoSrc;
@@ -990,7 +1069,7 @@ function projectorOn(){               // short projector "warm-up" flicker when 
     .to(beam, { opacity:1, duration:.1 }).to(beam, { opacity:.4, duration:.09 })
     .to(beam, { opacity:.78, duration:.6, ease:'power2.out' });
 }
- 
+
 /* ---------------- The runaway bear ---------------- */
 const pet = $('#pet'), petHop = $('#petHop'), petBubble = $('#petBubble');
 const PET_W = 62, PET_H = 70;
@@ -1062,7 +1141,7 @@ function showPet(){
   gsap.set(pet, { x:petX, y:petY });
   gsap.fromTo(pet, { autoAlpha:0, scale:.2 }, { autoAlpha:1, scale:1, duration:.7, delay:1.5, ease:'back.out(2)' });
 }
- 
+
 /* ---------------- Live counter ---------------- */
 const app = $('#app');
 function diffCal(a, b){
@@ -1088,17 +1167,17 @@ function tick(){
   }
 }
 tick(); setInterval(tick, 1000);
- 
+
 /* ---------------- GATE logic ---------------- */
 const gate = $('#gate'), gateInner = $('#gateInner'), envScene = $('#envScene'), envFloat = $('#envFloat'),
       flap = $('#envFlap'), seal = $('#envSeal'), card = $('#envCard'),
-      pass = $('#passInput'), go = $('#passGo'), err = $('#passErr'), hint = $('#gateHint');
+      hint = $('#gateHint');
 let opened = false, unlocking = false;
- 
+
 gsap.to(envFloat, { y:-9, duration:2.3, yoyo:true, repeat:-1, ease:'sine.inOut' });
 envScene.addEventListener('mouseenter', () => { if (!unlocking) gsap.to(envScene, { scale:1.04, duration:.5, ease:'power2.out' }); });
 envScene.addEventListener('mouseleave', () => { if (!unlocking) gsap.to(envScene, { scale:1, duration:.5, ease:'power2.out' }); });
- 
+
 function openEnvelope(){
   if (opened) return; opened = true;
   const tl = gsap.timeline();
@@ -1110,25 +1189,12 @@ function openEnvelope(){
     .to(card, { y:-105, duration:.8, ease:'power2.out' }, 1.05)
     .add(() => { card.style.zIndex = 9; }, 1.7)
     .to(card, { y:-168, duration:.6, ease:'power2.out' }, 1.75)
-    .add(() => { card.classList.add('active'); try{ pass.focus({ preventScroll:true }); }catch(e){} });
+    .add(() => { card.classList.add('active'); });
 }
 seal.addEventListener('click', openEnvelope);
- 
-const norm = s => String(s)
-  .replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d))
-  .replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d))
-  .replace(/\s+/g,'').trim();
- 
-function fail(){
-  err.textContent = 'مش عارفة اليوم!!!🤍';
-  card.classList.add('wrong');
-  gsap.killTweensOf(card, 'x');
-  gsap.fromTo(card, { x:-11 }, { x:11, duration:.06, repeat:9, yoyo:true, ease:'none', onComplete:() => gsap.set(card, { x:0 }) });
-  setTimeout(() => card.classList.remove('wrong'), 900);
-  pass.select();
-}
+
 function success(){
-  unlocking = true; err.textContent = '';
+  unlocking = true;
   playAudio();
   gsap.killTweensOf(envScene); gsap.killTweensOf(envFloat);
   const tl = gsap.timeline();
@@ -1137,23 +1203,46 @@ function success(){
     .add(enterApp, .75)
     .to(gate, { opacity:0, duration:.9, ease:'power2.inOut', onComplete:() => gate.classList.add('is-hidden') }, .75);
 }
-function submit(){
-  if (unlocking || !opened) return;
-  if (norm(pass.value) === norm(CONFIG.password)) success(); else fail();
+/* ---- Hold-to-unlock fingerprint (3 s) ---- */
+const fp = $('#fpBtn'), fpProg = $('#fpProg'), HOLD_MS = 3000, FP_C = 2*Math.PI*46;
+const fpState = { v:0 };
+let holding = false, holdStart = 0, holdRaf = 0;
+fpProg.style.strokeDasharray = FP_C; fpProg.style.strokeDashoffset = FP_C;
+const setProg = v => { fpProg.style.strokeDashoffset = FP_C*(1 - v); };
+function holdLoop(now){
+  if (!holding) return;
+  fpState.v = Math.min(1, (now - holdStart)/HOLD_MS); setProg(fpState.v);
+  if (fpState.v >= 1){
+    holding = false; fp.classList.remove('holding'); fp.classList.add('ok');
+    try{ navigator.vibrate && navigator.vibrate([40,40,80]); }catch(e){}
+    success(); return;
+  }
+  holdRaf = requestAnimationFrame(holdLoop);
 }
-go.addEventListener('click', submit);
-pass.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
- 
+function startHold(e){
+  if (unlocking || !opened || holding) return;
+  gsap.killTweensOf(fpState); fpState.v = 0; setProg(0);
+  holding = true; holdStart = performance.now(); fp.classList.add('holding');
+  try{ navigator.vibrate && navigator.vibrate(15); }catch(_){}
+  holdRaf = requestAnimationFrame(holdLoop);
+}
+function endHold(){
+  if (!holding) return;                       // released early: progress resets
+  holding = false; cancelAnimationFrame(holdRaf); fp.classList.remove('holding');
+  gsap.to(fpState, { v:0, duration:.45, ease:'power2.out', onUpdate:() => setProg(fpState.v) });
+}
+fp.addEventListener('pointerdown', e => { e.preventDefault(); try{ fp.setPointerCapture(e.pointerId); }catch(_){} startHold(e); });
+['pointerup','pointercancel','lostpointercapture','pointerleave'].forEach(ev => fp.addEventListener(ev, endHold));
+fp.addEventListener('contextmenu', e => e.preventDefault());
+fp.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && !e.repeat){ e.preventDefault(); startHold(e); } });
+fp.addEventListener('keyup', e => { if (e.key === 'Enter' || e.key === ' ') endHold(); });
+addEventListener('blur', endHold);
+
 /* ---------------- App navigation (overlapping screens) ---------------- */
 const screens = $$('.screen');
 let cur = -1, busy = false, pending = null;
 let tlInit = false, poemStarted = false;
- 
-function placeDot(animate){
-  const b = dockBtns[cur]; if (!b) return;
-  const x = b.offsetLeft + b.offsetWidth/2 - dockDot.offsetWidth/2;
-  if (animate) gsap.to(dockDot, { x, duration:.55, ease:'back.out(1.7)' }); else gsap.set(dockDot, { x });
-}
+
 function initTimelineReveal(){
   const root = $('#scroll0');
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), { root, threshold:.12 });
@@ -1161,30 +1250,37 @@ function initTimelineReveal(){
 }
 const onEnter = [
   () => { if (!tlInit){ tlInit = true; initTimelineReveal(); } },          // 0 قصتنا
-  () => { if (sw) sw.update(); },                                          // 1 ذكرياتنا
+  () => { if (sw) sw.update(); requestAnimationFrame(initScratch); },      // 1 ذكرياتنا
   () => { projectorOn(); },                                                // 2 فيديو
   () => { if (!poemStarted){ poemStarted = true; setTimeout(startPoem, 900); } },  // 3 شعر
   () => {},                                                                // 4 رسائل
   () => {}                                                                 // 5 التورتة
 ];
+const LAST = SCREENS.length - 1;
+const nav = $('#nav'), navPrev = $('#navPrev'), navNext = $('#navNext'), blackout = $('#blackout');
+$('#navDots').innerHTML = SCREENS.map((s,i) => `<button class="nav-dot" data-i="${i}" aria-label="${s.label}"></button>`).join('');
+const navDots = $$('.nav-dot');
+function navUpdate(i){ navDots.forEach((d,k) => d.classList.toggle('on', k === i)); navPrev.disabled = i === 0; navNext.disabled = i === LAST; }
 function goTo(i){
-  if (i === cur) return;
+  if (i === cur || i < 0 || i > LAST) return;
   if (busy){ pending = i; return; }
   busy = true; pending = null;
-  const next = screens[i], prev = cur >= 0 ? screens[cur] : null;
-  dockBtns.forEach((b,k) => b.classList.toggle('active', k === i));
+  const next = screens[i], prev = cur >= 0 ? screens[cur] : null, dir = (cur >= 0 && i < cur) ? -1 : 1;
+  navUpdate(i);
   if (cur >= 0 && screens[cur].id === 'scr5') { try{ vid.pause(); }catch(e){} }   // leaving the video room stops playback
-  cur = i; placeDot(prev !== null);
-  const tl = gsap.timeline({ onComplete:() => { busy = false; if (pending !== null && pending !== cur){ const n = pending; pending = null; goTo(n); } } });
+  cur = i;
+  const finish = () => { busy = false; if (pending !== null && pending !== cur){ const n = pending; pending = null; goTo(n); } };
+  if (prev && i === LAST){ finale(prev, next, i, finish); return; }
+  const tl = gsap.timeline({ onComplete:finish });
   let at = 0;
   if (prev){
-    tl.to(prev, { opacity:0, scale:1.03, filter:'blur(10px)', duration:.4, ease:'power2.in',
-      onComplete:() => { prev.style.visibility = 'hidden'; prev.style.pointerEvents = 'none'; gsap.set(prev, { scale:1, clearProps:'filter' }); } }, 0);
+    tl.to(prev, { opacity:0, scale:1.03, x:-dir*30, filter:'blur(10px)', duration:.4, ease:'power2.in',
+      onComplete:() => { prev.style.visibility = 'hidden'; prev.style.pointerEvents = 'none'; gsap.set(prev, { scale:1, x:0, clearProps:'filter,transform' }); } }, 0);
     at = .3;
   }
   tl.set(next, { visibility:'visible', pointerEvents:'auto' }, at)
-    .fromTo(next, { opacity:0, scale:.93, y:14, filter:'blur(12px)' },
-      { opacity:1, scale:1, y:0, filter:'blur(0px)', duration:.9, ease:'power3.out', clearProps:'transform,filter' }, at)
+    .fromTo(next, { opacity:0, scale:.93, x:dir*36, y:14, filter:'blur(12px)' },
+      { opacity:1, scale:1, x:0, y:0, filter:'blur(0px)', duration:.9, ease:'power3.out', clearProps:'transform,filter' }, at)
     .add(() => {
       onEnter[i]();
       const hero = i === 0;   // cinematic staggered reveal on the first screen
@@ -1192,22 +1288,53 @@ function goTo(i){
         { opacity:1, y:0, duration: hero ? 1.1 : .75, stagger: hero ? .22 : .08, delay: hero ? .25 : 0, ease:'power3.out', clearProps:'opacity,transform' });
     }, at + .05);
 }
-dockBtns.forEach((b,i) => b.addEventListener('click', () => {
-  gsap.fromTo(b.querySelector('.ic'), { scale:.8 }, { scale:1, duration:.5, ease:'back.out(3)' });
-  goTo(i);
-}));
-addEventListener('resize', () => placeDot(false));
- 
+/* Cinematic finale: total blackout for 1 s, then the cake and candle fade in softly */
+function finale(prev, next, i, done){
+  const items = Array.from(next.querySelectorAll('.anim'));
+  gsap.timeline({ onComplete:done })
+    .to(blackout, { autoAlpha:1, duration:.7, ease:'power2.in' })
+    .add(() => {
+      prev.style.visibility = 'hidden'; prev.style.pointerEvents = 'none'; gsap.set(prev, { opacity:0, clearProps:'filter,transform' });
+      gsap.set(items, { opacity:0 });
+      gsap.set(next, { visibility:'visible', pointerEvents:'auto', opacity:1, clearProps:'transform,filter' });
+    })
+    .to({}, { duration:1 })
+    .add(() => {
+      onEnter[i]();
+      gsap.fromTo(items, { opacity:0, y:22, scale:.96 }, { opacity:1, y:0, scale:1, duration:1.8, stagger:.4, ease:'power2.out', clearProps:'opacity,transform' });
+    })
+    .to(blackout, { autoAlpha:0, duration:1.5, ease:'power2.inOut' }, '<');
+}
+const step = d => goTo(Math.max(0, Math.min(LAST, (pending !== null ? pending : cur) + d)));
+navPrev.addEventListener('click', () => step(-1));
+navNext.addEventListener('click', () => step(1));
+navDots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.i)));
+/* native touch swipe: finger left = next, finger right = previous (ignored on video, scratch card, modal) */
+let sx = 0, sy = 0, st = 0, swipeOn = false;
+document.addEventListener('touchstart', e => {
+  swipeOn = app.classList.contains('live') && e.touches.length === 1 && modal.style.display !== 'flex' && !(e.target.closest && e.target.closest('.no-swipe, video, input, textarea'));
+  if (swipeOn){ sx = e.touches[0].clientX; sy = e.touches[0].clientY; st = Date.now(); }
+}, { passive:true });
+document.addEventListener('touchend', e => {
+  if (!swipeOn) return; swipeOn = false;
+  const t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
+  if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy)*1.5 && Date.now() - st < 900) step(dx < 0 ? 1 : -1);
+}, { passive:true });
+document.addEventListener('touchcancel', () => { swipeOn = false; }, { passive:true });
+addEventListener('keydown', e => {
+  if (!app.classList.contains('live') || modal.style.display === 'flex') return;
+  if (e.key === 'ArrowRight') step(1); else if (e.key === 'ArrowLeft') step(-1);
+});
+
 function enterApp(){
   if (CONFIG.poemBg) $('#scr2').style.backgroundImage = 'url("' + String(CONFIG.poemBg).replace(/"/g, '%22') + '")';
   app.classList.add('live');
   showPet();
-  gsap.fromTo(dock,  { autoAlpha:0, y:130 }, { autoAlpha:1, y:0, duration:.9, delay:.2, ease:'power3.out', onComplete:() => placeDot(false) });
+  gsap.fromTo(nav,   { autoAlpha:0, y:60 }, { autoAlpha:1, y:0, duration:.9, delay:.2, ease:'power3.out' });
   gsap.fromTo(music, { autoAlpha:0, scale:.3 }, { autoAlpha:1, scale:1, duration:.8, delay:.5, ease:'back.out(1.8)' });
-  placeDot(false);
   goTo(0);
 }
- 
+
 /* ---------------- Poetry typewriter ---------------- */
 function startPoem(){
   const typed = $('#poemTyped'), caret = $('#caret'), node = document.createTextNode('');
@@ -1224,7 +1351,7 @@ function startPoem(){
     setTimeout(step, d);
   })();
 }
- 
+
 /* ---------------- Messages: the bear & the chest ---------------- */
 const modal = $('#modal'), mCard = $('#modalCard');
 const msgScene = $('#msgScene'), flyL = $('#flyLetter');
@@ -1232,12 +1359,12 @@ const totalMsgs = CONFIG.feelingsCards.length;
 let msgIdx = 0, chestBusy = false;
 $('#msgDots').innerHTML = CONFIG.feelingsCards.map(() => '<i></i>').join('');
 const msgDots = $$('#msgDots i');
- 
+
 /* a gentle "pick me" rattle of the lid + head tilt while idle */
 const idleTl = gsap.timeline({ repeat:-1, repeatDelay:3.2, delay:2 });
 idleTl.to('#chLid', { rotation:-4, svgOrigin:'150 218', duration:.1, yoyo:true, repeat:5, ease:'sine.inOut' })
       .to('#bearHead', { rotation:5, svgOrigin:'150 132', duration:.4, yoyo:true, repeat:1, ease:'sine.inOut' }, 0);
- 
+
 /* Red & burgundy ROSE PETALS (custom canvas-confetti shapes), not regular confetti */
 function petals(ox, oy){
   if (typeof confetti !== 'function') return;
@@ -1260,7 +1387,7 @@ function petals(ox, oy){
     if (Date.now() < end) setTimeout(rain, 90);
   })();
 }
- 
+
 function showMessage(i){
   const c = CONFIG.feelingsCards[i]; if (!c) return;
   $('#mTitle').textContent = c.title; $('#mBody').textContent = c.content;
@@ -1318,7 +1445,7 @@ msgScene.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === '
 $('#modalX').addEventListener('click', closeModal);
 modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
 addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
- 
+
 /* ---------------- Finale : cake ---------------- */
 let blown = false;
 function celebrate(){
@@ -1368,4 +1495,3 @@ candle.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' '
 </script>
 </body>
 </html>
- 
