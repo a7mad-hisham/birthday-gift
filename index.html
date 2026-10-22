@@ -1005,8 +1005,8 @@ function initScratch(){
     ctx.restore();
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.direction = 'rtl';
     ctx.font = '700 ' + Math.max(15, Math.min(22, w/12)) + 'px Amiri, Cairo, serif';
-    ctx.fillStyle = 'rgba(255,243,194,.85)'; ctx.fillText('امسحي لاكتشاف المفاجأة ✨', w/2 + 1, hgt/2 + 1, w - 28);
-    ctx.fillStyle = '#4a091b'; ctx.fillText('امسحي لاكتشاف المفاجأة ✨', w/2, hgt/2, w - 28);
+    ctx.fillStyle = 'rgba(255,243,194,.85)'; ctx.fillText('✨', w/2 + 1, hgt/2 + 1, w - 28);
+    ctx.fillStyle = '#4a091b'; ctx.fillText('✨', w/2, hgt/2, w - 28);
   };
   paint();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (!scDone && !scDirty) paint(); });
