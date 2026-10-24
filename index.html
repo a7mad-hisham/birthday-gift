@@ -146,6 +146,45 @@ body{
 @keyframes pulseText{0%,100%{opacity:.5}50%{opacity:1}}
 @media (max-width:360px){.env-scene{transform:scale(.9)}}
 
+/* =================== LOCKDOWN (countdown) =================== */
+.gate.locked{visibility:hidden}
+.lock{position:fixed;inset:0;z-index:150;display:flex;flex-direction:column;align-items:center;overflow:hidden auto;
+  padding:calc(max(14px,env(safe-area-inset-top)) + 96px) 18px 28px;
+  background:radial-gradient(90% 70% at 50% 35%,rgba(74,9,27,.5),rgba(15,2,5,.6) 80%)}
+.teasers{display:flex;gap:22px;justify-content:center;flex:none}
+.tz{width:78px;display:flex;flex-direction:column;align-items:center;gap:8px;padding:0;border:0;background:none;cursor:pointer;color:var(--gold-2);font-family:'Cairo',sans-serif;outline:none}
+.tz-b{position:relative;width:64px;height:64px;border-radius:50%;display:grid;place-items:center;color:var(--wine-2);
+  background:repeating-radial-gradient(circle at center,#150407 0 2px,#2a0b12 2px 3px);
+  box-shadow:0 6px 16px rgba(0,0,0,.55),inset 0 0 0 1.5px rgba(243,229,171,.35);transition:transform .25s}
+.tz-b::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 18%,rgba(255,255,255,.16) 25%,transparent 32% 68%,rgba(255,255,255,.16) 75%,transparent 82%);pointer-events:none}
+.tz-b::after{content:"";position:absolute;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFFAF6,#EAD7CD);box-shadow:0 0 0 1.5px rgba(212,175,55,.6)}
+.tz:hover .tz-b,.tz:focus-visible .tz-b{transform:scale(1.07)}
+.tz-b svg{position:relative;z-index:2;width:16px;height:16px;fill:currentColor}
+.tz .i-pause{display:none}
+.tz.playing .i-play{display:none}.tz.playing .i-pause{display:block}
+.tz.playing .tz-b{animation:tzSpin 3s linear infinite}
+@keyframes tzSpin{to{transform:rotate(360deg)}}
+.tz em{font-style:normal;font-size:.72rem;font-weight:600;opacity:.9;line-height:1.3;text-align:center}
+.lock-main{flex:1;width:100%;max-width:520px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;text-align:center;padding-top:20px}
+.lock-msg{font-family:'Amiri',serif;font-weight:700;font-size:clamp(1.5rem,6vw,2.1rem);line-height:1.8;margin:0;color:var(--gold-2);text-shadow:0 0 26px rgba(212,175,55,.55)}
+.lock-count{display:flex;align-items:center;justify-content:center;gap:6px;width:100%}
+.lock-count .cbox{flex:1;min-width:0}
+.lock-count .colon{flex:none;font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold-2);text-shadow:0 0 12px rgba(212,175,55,.8);animation:pulseText 1.6s ease-in-out infinite}
+
+/* ---- Teddy on a swing + 10-second heart ---- */
+.teddy-wrap{display:flex;align-items:center;justify-content:center;width:100%;direction:ltr;flex:none}
+.teddy-svg{flex:none;display:block;margin:0 auto;width:190px;height:auto;overflow:visible;filter:drop-shadow(0 12px 16px rgba(0,0,0,.45)) drop-shadow(0 0 14px rgba(212,175,55,.2))}
+#swingG{transform-box:view-box;transform-origin:100px 12px;animation:swingRock 2.7s ease-in-out infinite alternate}
+@keyframes swingRock{from{transform:rotate(-8deg)}to{transform:rotate(8deg)}}
+.wink-e{transform-box:fill-box;transform-origin:center;animation:winkAnim 6s infinite}
+@keyframes winkAnim{0%,86%,100%{transform:scaleY(1)}90%,94%{transform:scaleY(.07)}}
+.fly-heart{position:fixed;left:0;top:0;z-index:170;pointer-events:none;line-height:1;text-shadow:0 0 12px rgba(255,120,150,.8);will-change:transform,opacity}
+.heart-timer{position:relative;display:none;width:min(78vw,300px);aspect-ratio:100/90;margin:0 auto;place-items:center}
+.heart-timer svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 0 22px rgba(255,70,110,.75)) drop-shadow(0 0 60px rgba(212,175,55,.45));animation:heartBeat .9s ease-in-out infinite}
+@keyframes heartBeat{0%,100%{transform:scale(1)}14%{transform:scale(1.1)}28%{transform:scale(1)}42%{transform:scale(1.07)}70%{transform:scale(1)}}
+.heart-timer b{position:relative;z-index:1;font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(4rem,22vw,6.5rem);line-height:1;color:var(--gold-2);margin-top:-8%;text-shadow:0 0 22px rgba(243,229,171,.9),0 4px 14px rgba(0,0,0,.5)}
+.lock.final .lock-msg{display:none}
+
 /* =================== APP SHELL =================== */
 #app{position:fixed;inset:0;z-index:10;visibility:hidden}
 #app.live{visibility:visible}
@@ -435,7 +474,60 @@ body{
 <audio id="bgm" loop preload="auto"></audio>
 
 <!-- ================= GATE (ENVELOPE) ================= -->
-<section id="gate" class="gate" aria-label="البوابة">
+<!-- ================= LOCKDOWN : COUNTDOWN + TEASERS ================= -->
+<section id="lock" class="lock" aria-label="العد التنازلي">
+  <div class="teasers" id="teasers"></div>
+  <div class="lock-main">
+    <div class="teddy-wrap" id="teddyWrap">
+      <svg class="teddy-svg" id="teddySvg" viewBox="0 0 200 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="دبدوب على أرجوحة">
+        <defs>
+          <linearGradient id="tFur" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E2B07F"/><stop offset="1" stop-color="#BE8754"/></linearGradient>
+          <linearGradient id="tGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff3c2"/><stop offset=".5" stop-color="#e2c05a"/><stop offset="1" stop-color="#8f6a14"/></linearGradient>
+          <linearGradient id="tWood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a1a36"/><stop offset="1" stop-color="#3a0a18"/></linearGradient>
+        </defs>
+        <path d="M24 8L6 226M176 8L194 226" stroke="url(#tGold)" stroke-width="5" stroke-linecap="round" fill="none"/>
+        <rect x="14" y="3" width="172" height="10" rx="5" fill="url(#tGold)"/>
+        <g id="swingG">
+          <path d="M62 12V152M138 12V152" stroke="#d9c08a" stroke-width="2.4" stroke-linecap="round"/>
+          <g>
+            <ellipse cx="78" cy="154" rx="17" ry="11" fill="url(#tFur)"/><ellipse cx="122" cy="154" rx="17" ry="11" fill="url(#tFur)"/>
+            <ellipse cx="78" cy="157" rx="8" ry="5.5" fill="#EFC9A0"/><ellipse cx="122" cy="157" rx="8" ry="5.5" fill="#EFC9A0"/>
+            <ellipse cx="100" cy="122" rx="35" ry="33" fill="url(#tFur)"/><ellipse cx="100" cy="128" rx="21" ry="21" fill="#F2D9B9"/>
+            <path d="M88 124h24v16q0 6-6 6H94q-6 0-6-6z" fill="none" stroke="#B88454" stroke-width="2"/>
+            <path d="M65 112C58 100 60 92 66 88" stroke="#D2A06C" stroke-width="13" stroke-linecap="round" fill="none"/>
+            <circle cx="66" cy="86" r="7.5" fill="#E2B07F"/>
+            <g id="armR"><ellipse cx="138" cy="122" rx="10" ry="23" transform="rotate(-10 138 122)" fill="#D2A06C"/><circle cx="141" cy="143" r="8.5" fill="#E2B07F"/></g>
+            <rect x="52" y="146" width="96" height="13" rx="6" fill="url(#tWood)" stroke="url(#tGold)" stroke-width="1.6"/>
+            <g id="tHead">
+              <circle cx="70" cy="38" r="14" fill="url(#tFur)"/><circle cx="70" cy="38" r="7" fill="#D49B8A"/>
+              <circle cx="130" cy="38" r="14" fill="url(#tFur)"/><circle cx="130" cy="38" r="7" fill="#D49B8A"/>
+              <ellipse cx="100" cy="66" rx="38" ry="33" fill="url(#tFur)"/>
+              <ellipse cx="76" cy="75" rx="6.5" ry="4" fill="rgba(235,110,120,.45)"/><ellipse cx="124" cy="75" rx="6.5" ry="4" fill="rgba(235,110,120,.45)"/>
+              <ellipse cx="100" cy="77" rx="16" ry="12" fill="#F6DDBD"/>
+              <ellipse cx="100" cy="71" rx="5.5" ry="4" fill="#3a1a14"/>
+              <path d="M100 75v4M100 79q-6 6-11 1M100 79q6 6 11 1" fill="none" stroke="#3a1a14" stroke-width="2" stroke-linecap="round"/>
+              <circle class="blink" cx="85" cy="60" r="4.2" fill="#2b1410"/><circle cx="86.3" cy="58.6" r="1.3" fill="#fff"/>
+              <g class="wink-e"><circle cx="115" cy="60" r="4.2" fill="#2b1410"/><circle cx="116.3" cy="58.6" r="1.3" fill="#fff"/></g>
+            </g>
+            <path d="M100 98L86 91V105Z M100 98L114 91V105Z" fill="#7a1a2b" stroke="#D4AF37" stroke-width="1"/><circle cx="100" cy="98" r="4" fill="#D4AF37"/>
+            <g id="tFlower" opacity="0"><path d="M0 0V-20" stroke="#4f8f4a" stroke-width="2.2" stroke-linecap="round"/><path d="M0 -8q7 -2 8 -8q-7 0 -8 8z" fill="#5fa55a"/>
+              <g fill="#ff8fb0"><circle cx="0" cy="-30" r="5"/><circle cx="7" cy="-25" r="5"/><circle cx="-7" cy="-25" r="5"/><circle cx="4.5" cy="-18" r="5"/><circle cx="-4.5" cy="-18" r="5"/></g><circle cx="0" cy="-24" r="3.6" fill="#ffd966"/></g>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <h1 class="lock-msg">المفاجأة لسه.. ليلة إكتمال القمر ✨</h1>
+    <div class="lock-count" id="lockCount">
+      <div class="heart-timer" id="heartTimer" aria-live="polite"><svg viewBox="0 0 100 90" aria-hidden="true"><defs><linearGradient id="hG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c41e3a"/><stop offset=".55" stop-color="#7a1030"/><stop offset="1" stop-color="#3a0a18"/></linearGradient></defs><path d="M50 87C20 62 2 44 2 26C2 12 13 3 26 3C36 3 45 9 50 18C55 9 64 3 74 3C87 3 98 12 98 26C98 44 80 62 50 87Z" fill="url(#hG)" stroke="#F3E5AB" stroke-width="2"/></svg><b id="heartNum">10</b></div>
+      <div class="cbox glass"><b id="lD">00</b><span>يوم</span></div><i class="colon">:</i>
+      <div class="cbox glass"><b id="lH">00</b><span>ساعة</span></div><i class="colon">:</i>
+      <div class="cbox glass"><b id="lM">00</b><span>دقيقة</span></div><i class="colon">:</i>
+      <div class="cbox glass"><b id="lS">00</b><span>ثانية</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="gate" class="gate locked" aria-label="البوابة">
   <div id="gateInner" class="gate-inner">
     <div class="gate-label"></div>
     <div class="env-scene" id="envScene">
@@ -784,6 +876,14 @@ body{
    ⚙️ ملف الإعدادات — عدّل القيم هنا فقط (لا تلمس أي شيء آخر تحت)
    ===================================================================== */
 const CONFIG = {
+  // شاشة الانتظار (قبل موعد فتح الموقع)
+  unlockDate: "2026-10-26T00:00:00", // موعد فتح الموقع (قبل الموعد بتظهر شاشة العد التنازلي — ضيف ?preview=true في آخر الرابط لتخطيها)
+  teaserTracks: [ // 3 مقاطع صوتية تظهر في شاشة الانتظار (الاسم تحت الزر + مسار الملف)
+    { title: "أغنية 1", src: "teaser1.mp3" },
+    { title: "أغنية 2", src: "teaser2.mp3" },
+    { title: "أغنية 3", src: "teaser3.mp3" }
+  ],
+
   // إعدادات البداية والموسيقى
   password: "26102006", // كلمة السر
   musicSrc: "song.mp3", // مسار الأغنية (قم بتغييره باسم ملف الأغنية لديك)
@@ -1102,14 +1202,15 @@ function petSay(msg){
   gsap.fromTo(petBubble, { autoAlpha:0, y: below ? -6 : 6, scale:.7 }, { autoAlpha:1, y:0, scale:1, duration:.28, ease:'back.out(2.2)' });
   bubbleTimer = setTimeout(() => gsap.to(petBubble, { autoAlpha:0, y: below ? -4 : 4, duration:.3 }), msg ? 3200 : 2100);
 }
-function giveUp(){                     // 5th touch: no dodge, say goodbye, vanish, come back after 7s
+function giveUp(){                     // 5th touch: no dodge, say goodbye, vanish, come back after 15s
   petSay('شكلك عاوزة تهزري، طب سلام بقا');
   gsap.to(pet, { scale:0, autoAlpha:0, duration:.7, delay:1.6, ease:'back.in(1.7)' });
   setTimeout(() => {
     touchCounter = 0;
+    if (typeof finaleTeddyGone !== 'undefined' && finaleTeddyGone){ petBusy = false; return; }   // stays gone on the finale screen
     const to = pickSpot(); petX = to.x; petY = to.y; gsap.set(pet, { x:petX, y:petY });
     gsap.fromTo(pet, { scale:0, autoAlpha:0 }, { scale:1, autoAlpha:1, duration:.7, ease:'back.out(2)', onComplete:() => { petBusy = false; } });
-  }, 7000);
+  }, 15000);   // the bear rests for exactly 15 seconds
 }
 function dodge(e){
   if (petBusy) return;
@@ -1238,6 +1339,90 @@ fp.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') &
 fp.addEventListener('keyup', e => { if (e.key === 'Enter' || e.key === ' ') endHold(); });
 addEventListener('blur', endHold);
 
+/* ---------------- Lockdown screen: countdown + teaser tracks ---------------- */
+const lockEl = $('#lock');
+const unlockAt = new Date(CONFIG.unlockDate).getTime();
+const previewMode = /[?&]preview=true(&|$)/.test(location.search);
+const teasers = [];
+(CONFIG.teaserTracks || []).forEach(tr => {
+  const btn = document.createElement('button');
+  btn.className = 'tz'; btn.setAttribute('aria-label', tr.title);
+  btn.innerHTML = '<span class="tz-b"><svg class="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="i-pause" viewBox="0 0 24 24"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></span><em>' + esc(tr.title) + '</em>';
+  const a = new Audio(); a.preload = 'none'; a.loop = false; a.src = tr.src;
+  const t = { a, btn };
+  const off = () => btn.classList.remove('playing');
+  a.addEventListener('play', () => btn.classList.add('playing'));
+  ['pause','ended','error'].forEach(ev => a.addEventListener(ev, off));
+  btn.addEventListener('click', () => {
+    if (!a.paused){ a.pause(); return; }                                            // click again = pause
+    teasers.forEach(o => { if (o !== t) o.a.pause(); });                            // only one track at a time
+    const p = a.play(); if (p && p.catch) p.catch(off);
+  });
+  teasers.push(t); $('#teasers').appendChild(btn);
+});
+function stopTeasers(){ teasers.forEach(t => { t.a.pause(); try{ t.a.currentTime = 0; }catch(e){} t.btn.classList.remove('playing'); }); }
+let lockDone = false, lockTimer = 0;
+function releaseLock(animated){
+  if (lockDone) return; lockDone = true;
+  clearInterval(lockTimer); stopTeasers(); stopTeddy();                                          // teaser stops the moment we leave
+  const hideLock = () => { lockEl.classList.add('is-hidden'); };
+  gate.classList.remove('locked');
+  if (!animated){ hideLock(); return; }
+  gsap.fromTo(gate, { opacity:0 }, { opacity:1, duration:1.4, ease:'power2.out', clearProps:'opacity' });
+  gsap.to(lockEl, { opacity:0, duration:1.2, ease:'power2.inOut', onComplete:hideLock });
+}
+/* ---- swinging teddy: wink, flower from the pocket, flying hearts, speech bubble ---- */
+let teddyTl = null;
+function throwHearts(){
+  const r = $('#tFlower').getBoundingClientRect(), x0 = r.left + r.width/2, y0 = r.top + r.height/2;
+  const cols = ['#ff4d6d','#ff8fa3','#c41e3a','#F3E5AB','#ff758f'];
+  for (let k = 0; k < 7; k++){
+    const el = document.createElement('div'); el.className = 'fly-heart'; el.textContent = '♥';
+    el.style.fontSize = rand(14, 28) + 'px'; el.style.color = cols[k % cols.length]; document.body.appendChild(el);
+    gsap.fromTo(el, { x:x0, y:y0, scale:.3, opacity:1, rotation:rand(-20,20) },
+      { x:x0 + rand(-190, 190), y:y0 - rand(120, 330), scale:rand(.9, 1.5), opacity:0, rotation:rand(-40,40), duration:rand(2.2, 3.4), delay:k*.18, ease:'power1.out', onComplete:() => el.remove() });
+  }
+}
+function startTeddy(){
+  gsap.set('#tFlower', { x:100, y:130, scale:.4, opacity:0 });
+  teddyTl = gsap.timeline({ repeat:-1, repeatDelay:6, delay:3 })                  // periodically: pull the flower out, offer it, throw hearts
+    .set('#tFlower', { opacity:1 })
+    .to('#armR', { rotation:-35, svgOrigin:'130 104', duration:.5, ease:'power2.inOut' }, 0)
+    .to('#tFlower', { x:140, y:122, scale:.8, duration:.5, ease:'power2.inOut' }, 0)
+    .to('#armR', { rotation:-78, svgOrigin:'130 104', duration:.7, ease:'back.out(1.5)' }, .7)
+    .to('#tFlower', { x:171, y:98, scale:1.05, duration:.7, ease:'back.out(1.5)' }, .7)
+    .add(throwHearts, 1.5)
+    .to('#tFlower', { rotation:12, svgOrigin:'171 98', duration:.35, yoyo:true, repeat:5, ease:'sine.inOut' }, 1.5)
+    .to('#armR', { rotation:0, svgOrigin:'130 104', duration:.6, ease:'power2.inOut' }, 3.6)
+    .to('#tFlower', { x:100, y:130, scale:.4, opacity:0, duration:.6, ease:'power2.inOut' }, 3.6);
+}
+function stopTeddy(){
+  if (teddyTl) teddyTl.kill();
+  $$('.fly-heart').forEach(e => e.remove());
+}
+/* ---- live countdown; the last 10 seconds become one big pulsing heart ---- */
+let finalMode = false, lastNum = -1;
+function lockTick(){
+  const diff = unlockAt - Date.now();
+  if (diff <= 0){ releaseLock(true); return; }
+  if (diff <= 10000){
+    const n = Math.ceil(diff/1000);
+    if (!finalMode){
+      finalMode = true; lockEl.classList.add('final');
+      gsap.to('#lockCount > .cbox, #lockCount > .colon', { opacity:0, scale:.8, duration:.5, onComplete(){ $$('#lockCount > .cbox, #lockCount > .colon').forEach(e => e.style.display = 'none'); } });
+      const ht = $('#heartTimer'); ht.style.display = 'grid';
+      gsap.fromTo(ht, { scale:.2, opacity:0 }, { scale:1, opacity:1, duration:.9, delay:.35, ease:'back.out(1.6)' });
+    }
+    if (n !== lastNum){ lastNum = n; $('#heartNum').textContent = n; gsap.fromTo('#heartNum', { scale:1.5, opacity:.3 }, { scale:1, opacity:1, duration:.55, ease:'power3.out' }); }
+    return;
+  }
+  const s = Math.floor(diff/1000), p2 = n => String(n).padStart(2,'0');
+  $('#lD').textContent = p2(Math.floor(s/86400)); $('#lH').textContent = p2(Math.floor(s%86400/3600));
+  $('#lM').textContent = p2(Math.floor(s%3600/60)); $('#lS').textContent = p2(s%60);
+}
+if (previewMode || isNaN(unlockAt) || unlockAt <= Date.now()) releaseLock(false);   // ?preview=true skips the lockdown
+else { lockTick(); lockTimer = setInterval(lockTick, 250); startTeddy(); }
+
 /* ---------------- App navigation (overlapping screens) ---------------- */
 const screens = $$('.screen');
 let cur = -1, busy = false, pending = null;
@@ -1254,15 +1439,25 @@ const onEnter = [
   () => { projectorOn(); },                                                // 2 فيديو
   () => { if (!poemStarted){ poemStarted = true; setTimeout(startPoem, 900); } },  // 3 شعر
   () => {},                                                                // 4 رسائل
-  () => {}                                                                 // 5 التورتة
+  () => { finaleTeddyStart(); }                                            // 5 التورتة
 ];
 const LAST = SCREENS.length - 1;
 const nav = $('#nav'), navPrev = $('#navPrev'), navNext = $('#navNext'), blackout = $('#blackout');
 $('#navDots').innerHTML = SCREENS.map((s,i) => `<button class="nav-dot" data-i="${i}" aria-label="${s.label}"></button>`).join('');
 const navDots = $$('.nav-dot');
 function navUpdate(i){ navDots.forEach((d,k) => d.classList.toggle('on', k === i)); navPrev.disabled = i === 0; navNext.disabled = i === LAST; }
+let finaleTimer = 0, finaleTeddyGone = false;
+function finaleTeddyStart(){                 // the floating teddy on the final screen disappears after exactly 15 s
+  clearTimeout(finaleTimer); finaleTeddyGone = false;
+  finaleTimer = setTimeout(() => { finaleTeddyGone = true; gsap.killTweensOf(pet); gsap.to(pet, { scale:0, autoAlpha:0, duration:.7, ease:'back.in(1.7)' }); }, 15000);
+}
+function finaleTeddyLeave(){
+  clearTimeout(finaleTimer);
+  if (finaleTeddyGone){ finaleTeddyGone = false; if (!petBusy) gsap.to(pet, { scale:1, autoAlpha:1, duration:.7, ease:'back.out(2)' }); }
+}
 function goTo(i){
   if (i === cur || i < 0 || i > LAST) return;
+  if (cur === LAST) finaleTeddyLeave();
   if (busy){ pending = i; return; }
   busy = true; pending = null;
   const next = screens[i], prev = cur >= 0 ? screens[cur] : null, dir = (cur >= 0 && i < cur) ? -1 : 1;
